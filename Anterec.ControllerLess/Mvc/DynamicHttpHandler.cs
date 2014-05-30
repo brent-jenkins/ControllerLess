@@ -11,12 +11,22 @@
     public class DynamicHttpHandler : IHttpHandler, System.Web.SessionState.IRequiresSessionState, IRouteHandler
     {
         /// <summary>
+        /// The assembly name.
+        /// </summary>
+        private const string AssemblyName = "Anterec.ControllerLess.Mvc";
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="DynamicHttpHandler"/> class.
         /// </summary>
         /// <param name="requestContext">The RequestContext to be used in this instance.</param>
         public DynamicHttpHandler(RequestContext requestContext)
         {
             RequestContext = requestContext;
+
+            if (!ControllerBuilder.Current.DefaultNamespaces.Contains(AssemblyName))
+            {
+                ControllerBuilder.Current.DefaultNamespaces.Add(AssemblyName);
+            }
         }
 
         /// <summary>
@@ -46,7 +56,7 @@
                 actionName = RequestContext.RouteData.Values["action"].ToString();
             }
 
-            // Google Chrome make additional requests for favicon.ico, etc. We need to filter this
+            // Some browsers make additional requests for favicon.ico, etc. We need to filter this
             // out before trying to find the correct controller.
             if (!controllerName.Contains(".") && !actionName.Contains("."))
             {
