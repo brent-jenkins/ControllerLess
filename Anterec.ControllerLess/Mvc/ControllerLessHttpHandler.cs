@@ -84,7 +84,7 @@
                         // If the view specific controller isn't available, then fall-back to the
                         // controller-less view controller instead.
                         _requestContext.RouteData.Values["ctrl"] = controllerName;
-                        _requestContext.RouteData.Values["view"] = _requestContext.RouteData.Values["action"];
+                        _requestContext.RouteData.Values["requested-action"] = _requestContext.RouteData.Values["action"];
 
                         var route = _settings.Get(string.Format("/{0}/{1}", controllerName, _requestContext.RouteData.Values["action"]));
 

@@ -14,7 +14,7 @@
         public ActionResult Index()
         {
             var controller = RouteData.Values["ctrl"].ToString();
-            var action = RouteData.Values["view"].ToString();
+            var action = RouteData.Values["requested-action"].ToString();
             var route = string.Format("~/Views/{0}/{1}.cshtml", controller, action);
             return View(route);
         }
