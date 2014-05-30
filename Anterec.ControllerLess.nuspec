@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ControllerLess</id>
+    <version>0.1.2</version>
+    <title>ControllerLess</title>
+    <authors>Brent Jenkins</authors>
+    <owners>Brent Jenkins</owners>
+    <projectUrl>http://www.anterec.co.uk/articles/controllerless-nuget-package-for-aspnet-mvc/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Enable MVC views without adding controllers.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>MVC MVC4 MVC5 ASP.NET ControllerLess</tags>
+  </metadata>
+</package>
