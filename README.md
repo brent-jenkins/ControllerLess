@@ -1,11 +1,6 @@
 ControllerLess
 ==============
 
-Enable ASP.NET MVC controller-less applications
-
-Background
-==========
-
 Using the default MVC HTTP handler means that regardless of whether you actually need server-side code 
 for rendering each view, you must have a corresponding controller.
 
