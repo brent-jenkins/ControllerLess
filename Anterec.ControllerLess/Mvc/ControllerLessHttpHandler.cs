@@ -4,6 +4,7 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
+    using Anterec.ControllerLess.Configuration;
 
     /// <summary>
     /// The ControllerLessHttpHandler class.
@@ -21,12 +22,18 @@
         private readonly RequestContext _requestContext;
 
         /// <summary>
+        /// The settings field.
+        /// </summary>
+        private readonly RouteConfiguration _settings;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ControllerLessHttpHandler"/> class.
         /// </summary>
         /// <param name="requestContext">The requestContext to be used in this instance.</param>
         public ControllerLessHttpHandler(RequestContext requestContext)
         {
             _requestContext = requestContext;
+            _settings = new RouteConfiguration();
 
             if (!ControllerBuilder.Current.DefaultNamespaces.Contains(AssemblyName))
             {
@@ -78,8 +85,20 @@
                         // controller-less view controller instead.
                         _requestContext.RouteData.Values["ctrl"] = controllerName;
                         _requestContext.RouteData.Values["view"] = _requestContext.RouteData.Values["action"];
-                        _requestContext.RouteData.Values["action"] = "Index";
-                        controllerName = "ControllerLessView";
+
+                        var route = _settings.Get(string.Format("/{0}/{1}", controllerName, _requestContext.RouteData.Values["action"]));
+
+                        if (route != null)
+                        {
+                            _requestContext.RouteData.Values["action"] = route.Action;
+                            controllerName = route.Controller;
+                        }
+                        else
+                        {
+                            _requestContext.RouteData.Values["action"] = _settings.DefaultAction;
+                            controllerName = _settings.DefaultController;
+                        }
+
                         controller = factory.CreateController(_requestContext, controllerName);
                     }
 
