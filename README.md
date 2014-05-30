@@ -34,7 +34,7 @@ public class RouteConfig
 		var route = new Route(
 			"{controller}/{action}/{id}",
 			new RouteValueDictionary(new { controller = "Home", action = "Index", id = UrlParameter.Optional }),
-			new DynamicRouteHandler());
+			new ControllerLessRouteHandler());
 
 		routes.Add(route);
 	}

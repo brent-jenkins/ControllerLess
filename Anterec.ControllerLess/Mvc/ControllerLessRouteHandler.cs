@@ -4,9 +4,9 @@
     using System.Web.Routing;
 
     /// <summary>
-    /// The DynamicRouteHandler class.
+    /// The ControllerLessRouteHandler class.
     /// </summary>
-    public sealed class DynamicRouteHandler : IRouteHandler
+    public sealed class ControllerLessRouteHandler : IRouteHandler
     {
         /// <summary>
         /// Gets the IRouteHandler for the current request.
@@ -15,7 +15,7 @@
         /// <returns>The IRouteHandler for the current request.</returns>
         IHttpHandler IRouteHandler.GetHttpHandler(RequestContext requestContext)
         {
-            return new DynamicHttpHandler(requestContext);
+            return new ControllerLessHttpHandler(requestContext);
         }
     }
 }

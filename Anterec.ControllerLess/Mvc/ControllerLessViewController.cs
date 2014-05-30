@@ -5,7 +5,7 @@
     /// <summary>
     /// The dynamic controller.
     /// </summary>
-    public class DynamicController : Controller
+    public class ControllerLessViewController : Controller
     {
         /// <summary>
         /// Performs the Index action.

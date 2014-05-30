@@ -70,9 +70,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mvc\DynamicController.cs" />
-    <Compile Include="Mvc\DynamicHttpHandler.cs" />
-    <Compile Include="Mvc\DynamicRouteHandler.cs" />
+    <Compile Include="Mvc\ControllerLessViewController.cs" />
+    <Compile Include="Mvc\ControllerLessHttpHandler.cs" />
+    <Compile Include="Mvc\ControllerLessRouteHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

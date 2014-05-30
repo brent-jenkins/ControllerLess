@@ -6,9 +6,9 @@
     using System.Web.Routing;
 
     /// <summary>
-    /// The DynamicHttpHandler class.
+    /// The ControllerLessHttpHandler class.
     /// </summary>
-    public class DynamicHttpHandler : IHttpHandler, System.Web.SessionState.IRequiresSessionState, IRouteHandler
+    public class ControllerLessHttpHandler : IHttpHandler, System.Web.SessionState.IRequiresSessionState, IRouteHandler
     {
         /// <summary>
         /// The assembly name.
@@ -16,23 +16,23 @@
         private const string AssemblyName = "Anterec.ControllerLess.Mvc";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DynamicHttpHandler"/> class.
+        /// Gets or sets the requestContext property.
         /// </summary>
-        /// <param name="requestContext">The RequestContext to be used in this instance.</param>
-        public DynamicHttpHandler(RequestContext requestContext)
+        private readonly RequestContext _requestContext;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ControllerLessHttpHandler"/> class.
+        /// </summary>
+        /// <param name="requestContext">The requestContext to be used in this instance.</param>
+        public ControllerLessHttpHandler(RequestContext requestContext)
         {
-            RequestContext = requestContext;
+            _requestContext = requestContext;
 
             if (!ControllerBuilder.Current.DefaultNamespaces.Contains(AssemblyName))
             {
                 ControllerBuilder.Current.DefaultNamespaces.Add(AssemblyName);
             }
         }
-
-        /// <summary>
-        /// Gets or sets the RequestContext property.
-        /// </summary>
-        public RequestContext RequestContext { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether this class is reusable.
@@ -48,12 +48,12 @@
         /// <param name="httpContext">The HttpContext containing the request.</param>
         public void ProcessRequest(HttpContext httpContext)
         {
-            var controllerName = RequestContext.RouteData.GetRequiredString("controller");
+            var controllerName = _requestContext.RouteData.GetRequiredString("controller");
             var actionName = string.Empty;
 
-            if (RequestContext.RouteData.Values["action"] != null)
+            if (_requestContext.RouteData.Values["action"] != null)
             {
-                actionName = RequestContext.RouteData.Values["action"].ToString();
+                actionName = _requestContext.RouteData.Values["action"].ToString();
             }
 
             // Some browsers make additional requests for favicon.ico, etc. We need to filter this
@@ -70,22 +70,22 @@
                     try
                     {
                         // Try to create an instance of the view specific controller.
-                        controller = factory.CreateController(RequestContext, controllerName);
+                        controller = factory.CreateController(_requestContext, controllerName);
                     }
                     catch
                     {
                         // If the view specific controller isn't available, then fall-back to the
-                        // dynamic view controller instead.
-                        RequestContext.RouteData.Values["ctrl"] = controllerName;
-                        RequestContext.RouteData.Values["view"] = RequestContext.RouteData.Values["action"];
-                        RequestContext.RouteData.Values["action"] = "Index";
-                        controllerName = "Dynamic";
-                        controller = factory.CreateController(RequestContext, controllerName);
+                        // controller-less view controller instead.
+                        _requestContext.RouteData.Values["ctrl"] = controllerName;
+                        _requestContext.RouteData.Values["view"] = _requestContext.RouteData.Values["action"];
+                        _requestContext.RouteData.Values["action"] = "Index";
+                        controllerName = "ControllerLessView";
+                        controller = factory.CreateController(_requestContext, controllerName);
                     }
 
                     if (controller != null)
                     {
-                        controller.Execute(RequestContext);
+                        controller.Execute(_requestContext);
                     }
                 }
                 finally
@@ -101,7 +101,7 @@
         /// <summary>
         /// Gets the HttpHandler for the current request.
         /// </summary>
-        /// <param name="requestContext">The RequestContext for the current request.</param>
+        /// <param name="requestContext">The requestContext for the current request.</param>
         /// <returns>The HttpHandler for the current request.</returns>
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
