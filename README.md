@@ -22,6 +22,7 @@ Configuration
 
 Once installed, simply update your route config to use the DynamicRouteHandler.
 
+```C#
 using Anterec.ControllerLess.Mvc;
 
 public class RouteConfig
@@ -38,3 +39,4 @@ public class RouteConfig
 		routes.Add(route);
 	}
 }
+```
