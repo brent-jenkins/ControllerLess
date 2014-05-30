@@ -20,7 +20,7 @@ And if you need a controller for a specific view, you can still add it in the no
 Configuration
 =============
 
-Once installed, simply update your route config to use the DynamicRouteHandler.
+Once installed, simply update your route config to use the ControllerLessRouteHandler.
 
 ```C#
 using Anterec.ControllerLess.Mvc;
