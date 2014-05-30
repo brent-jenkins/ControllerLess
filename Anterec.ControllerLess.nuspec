@@ -2,12 +2,13 @@
 <package >
   <metadata>
     <id>ControllerLess</id>
-    <version>0.1.3</version>
+    <version>0.1.4</version>
     <title>ControllerLess</title>
     <authors>Brent Jenkins</authors>
     <owners>Brent Jenkins</owners>
     <projectUrl>https://github.com/brentj73/ControllerLess</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+	<licenseUrl>https://nuget.codeplex.com/license</licenseUrl>
     <description>Enable MVC views without adding controllers.</description>
     <releaseNotes>Initial release.</releaseNotes>
     <copyright>Copyright 2014</copyright>
