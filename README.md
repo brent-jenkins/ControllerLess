@@ -35,3 +35,20 @@ public class RouteConfig
 	}
 }
 ```
+
+Advanced Configuration
+======================
+
+If you want to change the default behavior, you can configure ControllerLess to redirect requests to your own controllers in the Web.config file.
+
+```XML
+<controllerLessSettings defaultController="{optional}" defaultAction="{optional}">
+  <routes>
+    <clear />
+    <add url="/Hello" controller="Door" action="Enter"/>
+    <add url="/Hello/Cutiepie" controller="Panic" action="Run"/>
+    ...
+  </routes>
+</controllerLessSettings>
+```
+
