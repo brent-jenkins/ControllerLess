@@ -33,7 +33,7 @@
         public ControllerLessHttpHandler(RequestContext requestContext)
         {
             _requestContext = requestContext;
-            _settings = new RouteConfiguration();
+            _settings = (RouteConfiguration)System.Configuration.ConfigurationManager.GetSection("controllerLessSettings");
 
             if (!ControllerBuilder.Current.DefaultNamespaces.Contains(AssemblyName))
             {
