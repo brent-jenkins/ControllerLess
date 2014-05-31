@@ -42,7 +42,7 @@ Advanced Configuration (optional)
 You can configure ControllerLess to redirect requests to your own controllers and actions on a URL by URL basis in the Web.config file.
 
 ```XML
-<controllerLessSettings">
+<controllerLessSettings>
   <routes>
     <clear />
     <add url="/Hello" controller="Door" action="Enter"/>
