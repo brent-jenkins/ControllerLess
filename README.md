@@ -12,8 +12,8 @@ with a single action instead of creating multiple copies of the same thing? The 
 
 And if you need a controller for a specific view, you can still add it in the normal way and it will work as expected.
 
-Configuration
-=============
+Configuration (optional)
+========================
 
 Once installed, simply update your route config to use the ControllerLessRouteHandler.
 
@@ -36,8 +36,8 @@ public class RouteConfig
 }
 ```
 
-Advanced Configuration
-======================
+Advanced Configuration (optional)
+=================================
 
 You can configure ControllerLess to redirect requests to your own controllers and actions on a URL by URL basis in the Web.config file.
 
