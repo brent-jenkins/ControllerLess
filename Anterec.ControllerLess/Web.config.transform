@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <configSections>
-	  <section name="controllerLessSettings" type="Anterec.ControllerLess.Configuration.RouteConfiguration, Anterec.ControllerLess, Version=0.1.5.0, Culture=neutral" allowLocation="true" allowDefinition="Everywhere" />
+	  <section name="controllerLessSettings" type="Anterec.ControllerLess.Configuration.RouteConfiguration, Anterec.ControllerLess, Version=0.2.0.0, Culture=neutral" allowLocation="true" allowDefinition="Everywhere" />
   </configSections>
   <controllerLessSettings>
 	  <routes>
