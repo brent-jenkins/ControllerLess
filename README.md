@@ -45,7 +45,7 @@ You can configure ControllerLess to redirect requests to your own controllers an
 <controllerLessSettings>
   <routes>
     <clear />
-    <add url="/Hello" controller="Door" action="Enter"/>
+    <add url="/Hello/Index" controller="Door" action="Enter"/>
     <add url="/Hello/Cutiepie" controller="Panic" action="Run"/>
     ...
   </routes>
@@ -63,3 +63,21 @@ You can also configure your own controller and action to receive all requests, r
 ```
 
 In this example any view that doesn't have a controller will be routed to the "Show" action on the "Default" controller.
+
+Enabling VB.NET support
+=======================
+
+As of version 0.2.1 you can configure the extension for views (either .cshtml or vbhtml) either globally or for individual routes.
+
+```XML
+<controllerLessSettings defaultViewExtension=".vbhtml">
+  <routes>
+    <clear />
+    <add url="/Hello/Index" controller="Door" action="Enter"/>
+    <add url="/Hello/Cutiepie" controller="Panic" action="Run"/>
+    <add url="/Goodbye/Leave" viewExtension=".cshtml"/>
+    ...
+  </routes>
+</controllerLessSettings>
+```
+
