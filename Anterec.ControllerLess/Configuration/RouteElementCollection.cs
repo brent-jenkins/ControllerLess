@@ -5,7 +5,7 @@
     using System.Reflection;
 
     /// <summary>
-    /// The route element collection.
+    /// The RouteElementCollection class.
     /// </summary>
     public class RouteElementCollection : ConfigurationElementCollection
     {

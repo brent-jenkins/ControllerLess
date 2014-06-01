@@ -2,9 +2,10 @@
 {
     using System;
     using System.Configuration;
+    using System.Linq;
 
     /// <summary>
-    /// The route configuration.
+    /// The RouteConfiguration class.
     /// </summary>
     public class RouteConfiguration : ConfigurationSection
     {
@@ -14,7 +15,7 @@
         /// <value>
         /// The default controller.
         /// </value>
-        [ConfigurationProperty("defaultController", DefaultValue = "ControllerLessView", IsRequired = false)]
+        [ConfigurationProperty("defaultController", DefaultValue = "ControllerLess", IsRequired = false)]
         public string DefaultController
         {
             get
@@ -49,6 +50,26 @@
         }
 
         /// <summary>
+        /// Gets or sets the default view file extension.
+        /// </summary>
+        /// <value>
+        /// The default view file extension.
+        /// </value>
+        [ConfigurationProperty("defaultViewExtension", DefaultValue = ".cshtml", IsRequired = false)]
+        public string DefaultViewExtension
+        {
+            get
+            {
+                return (string)this["defaultViewExtension"];
+            }
+
+            set
+            {
+                this["defaultViewExtension"] = value;
+            }
+        }
+
+        /// <summary>
         /// Gets the routes.
         /// </summary>
         /// <value>
@@ -64,24 +85,29 @@
         }
 
         /// <summary>
+        /// Gets the configuration settings.
+        /// </summary>
+        /// <returns>The configuration settings.</returns>
+        public static RouteConfiguration GetConfigurationSettings()
+        {
+            var configuration = (RouteConfiguration)ConfigurationManager.GetSection("controllerLessSettings");
+            
+            if (configuration == null)
+            {
+                configuration = new RouteConfiguration();
+            }
+
+            return configuration;
+        }
+
+        /// <summary>
         /// Gets route for the specified URL.
         /// </summary>
         /// <param name="url">The URL.</param>
         /// <returns>The matched route element if found, otherwise null.</returns>
         public RouteElement Get(string url)
         {
-            RouteElement result = null;
-
-            foreach (RouteElement element in Routes)
-            {
-                if (element.Url.Equals(url, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    result = element;
-                    break;
-                }
-            }
-
-            return result;
+            return Routes.Cast<RouteElement>().FirstOrDefault(element => element.Url.Equals(url, StringComparison.InvariantCultureIgnoreCase));
         }
     }
 }

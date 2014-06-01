@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ControllerLess</id>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
     <title>ControllerLess</title>
     <authors>Brent Jenkins</authors>
     <owners>Brent Jenkins</owners>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<licenseUrl>https://nuget.codeplex.com/license</licenseUrl>
     <description>Enable MVC views without adding controllers.</description>
-    <releaseNotes>Enabled configurable routes.</releaseNotes>
+    <releaseNotes>Added support for VB.NET.</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>MVC MVC4 MVC5 ASP.NET ControllerLess</tags>
   </metadata>

@@ -22,18 +22,12 @@
         private readonly RequestContext _requestContext;
 
         /// <summary>
-        /// The settings field.
-        /// </summary>
-        private readonly RouteConfiguration _settings;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="ControllerLessHttpHandler"/> class.
         /// </summary>
         /// <param name="requestContext">The requestContext to be used in this instance.</param>
         public ControllerLessHttpHandler(RequestContext requestContext)
         {
             _requestContext = requestContext;
-            _settings = (RouteConfiguration)System.Configuration.ConfigurationManager.GetSection("controllerLessSettings");
 
             if (!ControllerBuilder.Current.DefaultNamespaces.Contains(AssemblyName))
             {
@@ -55,63 +49,60 @@
         /// <param name="httpContext">The HttpContext containing the request.</param>
         public void ProcessRequest(HttpContext httpContext)
         {
-            var controllerName = _requestContext.RouteData.GetRequiredString("controller");
-            var actionName = string.Empty;
+            var controller = _requestContext.RouteData.GetRequiredString("controller");
+            var action = string.Empty;
 
             if (_requestContext.RouteData.Values["action"] != null)
             {
-                actionName = _requestContext.RouteData.Values["action"].ToString();
+                action = _requestContext.RouteData.Values["action"].ToString();
             }
 
-            // Some browsers make additional requests for favicon.ico, etc. We need to filter this
-            // out before trying to find the correct controller.
-            if (!controllerName.Contains(".") && !actionName.Contains("."))
+            if (action != string.Empty)
             {
-                IController controller = null;
-                IControllerFactory factory = null;
+                IController viewController = null;
+                IControllerFactory controllerFactory = null;
 
                 try
                 {
-                    factory = ControllerBuilder.Current.GetControllerFactory();
+                    controllerFactory = ControllerBuilder.Current.GetControllerFactory();
 
                     try
                     {
-                        // Try to create an instance of the view specific controller.
-                        controller = factory.CreateController(_requestContext, controllerName);
+                        viewController = controllerFactory.CreateController(_requestContext, controller);
                     }
                     catch
                     {
-                        // If the view specific controller isn't available, then fall-back to the
-                        // controller-less view controller instead.
-                        _requestContext.RouteData.Values["ctrl"] = controllerName;
-                        _requestContext.RouteData.Values["requested-action"] = _requestContext.RouteData.Values["action"];
+                        _requestContext.RouteData.Values["ctrl"] = controller;
+                        _requestContext.RouteData.Values["x-ctrl"] = controller;
+                        _requestContext.RouteData.Values["x-action"] = action;
 
-                        var route = _settings.Get(string.Format("/{0}/{1}", controllerName, _requestContext.RouteData.Values["action"]));
+                        var settings = RouteConfiguration.GetConfigurationSettings();
+                        var route = settings.Get(string.Format("/{0}/{1}", controller, action));
 
                         if (route != null)
                         {
                             _requestContext.RouteData.Values["action"] = route.Action;
-                            controllerName = route.Controller;
+                            controller = route.Controller;
                         }
                         else
                         {
-                            _requestContext.RouteData.Values["action"] = _settings.DefaultAction;
-                            controllerName = _settings.DefaultController;
+                            _requestContext.RouteData.Values["action"] = settings.DefaultAction;
+                            controller = settings.DefaultController;
                         }
 
-                        controller = factory.CreateController(_requestContext, controllerName);
+                        viewController = controllerFactory.CreateController(_requestContext, controller);
                     }
 
-                    if (controller != null)
+                    if (viewController != null)
                     {
-                        controller.Execute(_requestContext);
+                        viewController.Execute(_requestContext);
                     }
                 }
                 finally
                 {
-                    if (factory != null)
+                    if (controllerFactory != null)
                     {
-                        factory.ReleaseController(controller);
+                        controllerFactory.ReleaseController(viewController);
                     }
                 }
             }

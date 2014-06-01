@@ -74,7 +74,7 @@
     <Compile Include="Configuration\RouteConfiguration.cs" />
     <Compile Include="Configuration\RouteElement.cs" />
     <Compile Include="Configuration\RouteElementCollection.cs" />
-    <Compile Include="Mvc\ControllerLessViewController.cs" />
+    <Compile Include="Mvc\ControllerLessController.cs" />
     <Compile Include="Mvc\ControllerLessHttpHandler.cs" />
     <Compile Include="Mvc\ControllerLessRouteHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -3,7 +3,7 @@
     using System.Configuration;
 
     /// <summary>
-    /// The route element.
+    /// The RouteElement class.
     /// </summary>
     public class RouteElement : ConfigurationElement
     {
@@ -33,7 +33,7 @@
         /// <value>
         /// The controller.
         /// </value>
-        [ConfigurationProperty("controller", DefaultValue = "Home", IsRequired = true)]
+        [ConfigurationProperty("controller", DefaultValue = "ControllerLess", IsRequired = false)]
         public string Controller
         {
             get
@@ -53,7 +53,7 @@
         /// <value>
         /// The action.
         /// </value>
-        [ConfigurationProperty("action", DefaultValue = "Index", IsRequired = true)]
+        [ConfigurationProperty("action", DefaultValue = "Index", IsRequired = false)]
         public string Action
         {
             get
@@ -64,6 +64,26 @@
             set
             {
                 this["action"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the view file extension.
+        /// </summary>
+        /// <value>
+        /// The view file extension.
+        /// </value>
+        [ConfigurationProperty("viewExtension", DefaultValue = ".cshtml", IsRequired = false)]
+        public string ViewExtension
+        {
+            get
+            {
+                return (string)this["viewExtension"];
+            }
+
+            set
+            {
+                this["viewExtension"] = value;
             }
         }
     }
