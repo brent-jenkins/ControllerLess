@@ -2,15 +2,15 @@
 <package >
   <metadata>
     <id>ControllerLess</id>
-    <version>0.2.2</version>
+    <version>1.0.0</version>
     <title>ControllerLess</title>
     <authors>Brent Jenkins</authors>
     <owners>Brent Jenkins</owners>
     <projectUrl>https://github.com/brentj73/ControllerLess</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-	<licenseUrl>https://nuget.codeplex.com/license</licenseUrl>
+	<licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <description>Make ASP.NET MVC controllers optional.</description>
-    <releaseNotes>Updated nuspec file to include dependencies.</releaseNotes>
+    <releaseNotes>Release version of ControllerLess package.</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>MVC MVC4 MVC5 ASP.NET View Controller ControllerLess</tags>
 	<dependencies>
