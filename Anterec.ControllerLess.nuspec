@@ -2,16 +2,19 @@
 <package >
   <metadata>
     <id>ControllerLess</id>
-    <version>0.2.1</version>
+    <version>0.2.2</version>
     <title>ControllerLess</title>
     <authors>Brent Jenkins</authors>
     <owners>Brent Jenkins</owners>
     <projectUrl>https://github.com/brentj73/ControllerLess</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<licenseUrl>https://nuget.codeplex.com/license</licenseUrl>
-    <description>Enable MVC views without adding controllers.</description>
-    <releaseNotes>Added support for VB.NET.</releaseNotes>
+    <description>Make ASP.NET MVC controllers optional.</description>
+    <releaseNotes>Updated nuspec file to include dependencies.</releaseNotes>
     <copyright>Copyright 2014</copyright>
-    <tags>MVC MVC4 MVC5 ASP.NET ControllerLess</tags>
-  </metadata>
+    <tags>MVC MVC4 MVC5 ASP.NET View Controller ControllerLess</tags>
+	<dependencies>
+      <dependency id="Microsoft.AspNet.Mvc" version="4.0.0" />
+    </dependencies> 
+	</metadata>
 </package>
