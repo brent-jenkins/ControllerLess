@@ -17,6 +17,7 @@
             var settings = RouteConfiguration.GetConfigurationSettings();
             var controller = RouteData.Values["x-ctrl"].ToString();
             var action = RouteData.Values["x-action"].ToString();
+            var path = RouteData.Values["x-path"].ToString();
             var view = string.Format("/{0}/{1}", controller, action);
             var extension = settings.DefaultViewExtension;
 
@@ -26,8 +27,12 @@
                 extension = route.ViewExtension;
             }
 
-            var path = string.Format("~/Views{0}{1}", view, extension);
-            return View(path);
+            if (path != "/")
+            {
+                return View(string.Format("~/Areas{0}/Views{1}{2}", path, view, extension));
+            }
+
+            return View(string.Format("~/Views{0}{1}", view, extension));
         }
     }
 }

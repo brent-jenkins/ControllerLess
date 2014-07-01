@@ -75,6 +75,7 @@
                         _requestContext.RouteData.Values["ctrl"] = controller;
                         _requestContext.RouteData.Values["x-ctrl"] = controller;
                         _requestContext.RouteData.Values["x-action"] = action;
+                        _requestContext.RouteData.Values["x-path"] = httpContext.Request.Path;
 
                         var settings = RouteConfiguration.GetConfigurationSettings();
                         var route = settings.Get(string.Format("/{0}/{1}", controller, action));
