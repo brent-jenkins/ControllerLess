@@ -36,6 +36,34 @@ public class RouteConfig
 }
 ```
 
+From version 1.0.2, ControllerLess can also be configured to work with ASP.NET MVC areas.
+
+```C#
+using System.Web.Routing;
+using Anterec.ControllerLess.Mvc;
+
+public class CustomAreaRegistration : AreaRegistration 
+{
+	public override string AreaName 
+	{
+		get 
+		{
+			return "Custom";
+		}
+	}
+
+	public override void RegisterArea(AreaRegistrationContext context) 
+	{
+		var route = new Route(
+			"Custom/{controller}/{action}/{id}",
+			new RouteValueDictionary(new { area = "Custom", controller = "Home", action = "Index", id = UrlParameter.Optional }),
+			new ControllerLessRouteHandler());
+
+		context.Routes.Add(route);
+	}
+}
+```
+
 Advanced Configuration (optional)
 =================================
 
