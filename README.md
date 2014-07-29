@@ -9,7 +9,7 @@ seems inefficient and adds to the maintenance cost of the application.
 So how can we get around this? Wouldn't it be great if we could just have a single re-usable controller 
 with a single action instead of creating multiple copies of the same thing? The good news is that it's easy with ControllerLess!
 
-And if you need a controller for a specific view, you can still add it in the normal way and it will work as expected.
+And if you need a controller for a specific view or action, you can still add it in the normal way and it will work as expected.
 
 Configuration
 =============
@@ -62,6 +62,8 @@ public class CustomAreaRegistration : AreaRegistration
 	}
 }
 ```
+
+From version 1.0.3, it is possible to create controllers with or without actions for specific views.
 
 Advanced Configuration (optional)
 =================================
