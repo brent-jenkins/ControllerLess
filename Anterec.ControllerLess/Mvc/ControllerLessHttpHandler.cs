@@ -70,6 +70,7 @@
                     try
                     {
                         viewController = controllerFactory.CreateController(_requestContext, controller);
+                        viewController.Execute(_requestContext);
                     }
                     catch
                     {
@@ -93,11 +94,10 @@
                         }
 
                         viewController = controllerFactory.CreateController(_requestContext, controller);
-                    }
-
-                    if (viewController != null)
-                    {
-                        viewController.Execute(_requestContext);
+                        if (viewController != null)
+                        {
+                            viewController.Execute(_requestContext);
+                        }
                     }
                 }
                 finally
