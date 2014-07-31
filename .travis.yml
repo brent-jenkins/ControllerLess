@@ -8,3 +8,4 @@ before_install:
 
 script:
   - xbuild Anterec.ControllerLess.sln
+  - nunit-console Anterec.ControllerLess.Tests/bin/Debug/Anterec.ControllerLess.Tests.dll -exclude Integration,NotWorkingOnMono
