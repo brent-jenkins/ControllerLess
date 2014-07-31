@@ -9,7 +9,7 @@
     /// <summary>
     /// The ControllerLessHttpHandler class.
     /// </summary>
-    public class ControllerLessHttpHandler : IHttpHandler, System.Web.SessionState.IRequiresSessionState, IRouteHandler
+    public class ControllerLessHttpHandler : IHttpHandler
     {
         /// <summary>
         /// The assembly name.
@@ -54,6 +54,16 @@
         /// </summary>
         /// <param name="httpContext">The HttpContext containing the request.</param>
         public void ProcessRequest(HttpContext httpContext)
+        {
+            HttpContextBase wrapper = new HttpContextWrapper(httpContext);
+            ProcessRequest(wrapper);
+        }
+
+        /// <summary>
+        /// Process the current HTTP request.
+        /// </summary>
+        /// <param name="httpContext">The HttpContext containing the request.</param>
+        public void ProcessRequest(HttpContextBase httpContext)
         {
             var controller = _requestContext.RouteData.GetRequiredString("controller");
             var action = string.Empty;
