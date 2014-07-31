@@ -28,6 +28,26 @@
         }
 
         /// <summary>
+        /// Gets or sets the area.
+        /// </summary>
+        /// <value>
+        /// The area.
+        /// </value>
+        [ConfigurationProperty("area", DefaultValue = "", IsRequired = false)]
+        public string Area
+        {
+            get
+            {
+                return (string)this["area"];
+            }
+
+            set
+            {
+                this["area"] = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the controller.
         /// </summary>
         /// <value>

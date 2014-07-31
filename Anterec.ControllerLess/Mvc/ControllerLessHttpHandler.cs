@@ -17,9 +17,14 @@
         private const string AssemblyName = "Anterec.ControllerLess.Mvc";
 
         /// <summary>
-        /// Gets or sets the requestContext property.
+        /// The request context.
         /// </summary>
         private readonly RequestContext _requestContext;
+
+        /// <summary>
+        /// The configuration settings.
+        /// </summary>
+        private readonly RouteConfiguration _configuration;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ControllerLessHttpHandler"/> class.
@@ -28,6 +33,7 @@
         public ControllerLessHttpHandler(RequestContext requestContext)
         {
             _requestContext = requestContext;
+            _configuration = RouteConfiguration.GetConfigurationSettings();
 
             if (!ControllerBuilder.Current.DefaultNamespaces.Contains(AssemblyName))
             {
@@ -73,28 +79,7 @@
                     }
                     catch
                     {
-                        _requestContext.RouteData.Values["x-action"] = action;
-
-                        var settings = RouteConfiguration.GetConfigurationSettings();
-                        var route = settings.Get(string.Format("/{0}/{1}", controller, action));
-
-                        if (route != null)
-                        {
-                            _requestContext.RouteData.Values["controller"] = route.Controller;
-                            _requestContext.RouteData.Values["action"] = route.Action;
-                            controller = route.Controller;
-                        }
-                        else
-                        {
-                            _requestContext.RouteData.Values["action"] = settings.DefaultAction;
-                            controller = settings.DefaultController;
-                        }
-
-                        viewController = controllerFactory.CreateController(_requestContext, controller);
-                        if (viewController != null)
-                        {
-                            viewController.Execute(_requestContext);
-                        }
+                        DispatchRequest(controllerFactory, controller, action);
                     }
                 }
                 finally
@@ -115,6 +100,65 @@
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Dispatches the request.
+        /// </summary>
+        /// <param name="controllerFactory">The controller factory.</param>
+        /// <param name="controller">The controller.</param>
+        /// <param name="action">The action.</param>
+        private void DispatchRequest(IControllerFactory controllerFactory, string controller, string action)
+        {
+            var route = GetRoute(controller, action);
+            _requestContext.RouteData.Values["x-action"] = action;
+
+            if (route != null)
+            {
+                _requestContext.RouteData.Values["controller"] = route.Controller;
+                _requestContext.RouteData.Values["action"] = route.Action;
+
+                if (route.Area != string.Empty)
+                {
+                    _requestContext.RouteData.DataTokens["area"] = route.Area;
+                }
+
+                controller = route.Controller;
+            }
+            else
+            {
+                _requestContext.RouteData.Values["action"] = _configuration.DefaultAction;
+                controller = _configuration.DefaultController;
+            }
+
+            var viewController = controllerFactory.CreateController(_requestContext, controller);
+            if (viewController != null)
+            {
+                viewController.Execute(_requestContext);
+            }
+        }
+
+        /// <summary>
+        /// Gets the configured route.
+        /// </summary>
+        /// <param name="controller">The controller.</param>
+        /// <param name="action">The action.</param>
+        /// <returns>The configured route (or null if the route is not configured).</returns>
+        private RouteElement GetRoute(string controller, string action)
+        {
+            RouteElement route;
+
+            if (_requestContext.RouteData.Values["area"] != null)
+            {
+                var area = _requestContext.RouteData.Values["area"].ToString();
+                route = _configuration.Get(string.Format("/{0}/{1}/{2}", area, controller, action));
+            }
+            else
+            {
+                route = _configuration.Get(string.Format("/{0}/{1}", controller, action));
+            }
+
+            return route;
         }
     }
 }

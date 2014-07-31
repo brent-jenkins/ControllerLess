@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Custom\Controllers\AreaAlternativeController.cs" />
     <Compile Include="Areas\Custom\Controllers\Page5Controller.cs" />
     <Compile Include="Areas\Custom\CustomAreaRegistration.cs" />
     <Compile Include="Controllers\AlternativeController.cs" />
@@ -112,6 +113,7 @@
     <Content Include="Areas\Custom\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Custom\Views\Page5\WithController.cshtml" />
     <Content Include="Areas\Custom\Views\Page5\WithoutController.cshtml" />
+    <Content Include="Areas\Custom\Views\AreaAlternative\AlternativeRouting.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
