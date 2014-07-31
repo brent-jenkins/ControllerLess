@@ -50,26 +50,6 @@
         }
 
         /// <summary>
-        /// Gets or sets the default view file extension.
-        /// </summary>
-        /// <value>
-        /// The default view file extension.
-        /// </value>
-        [ConfigurationProperty("defaultViewExtension", DefaultValue = ".cshtml", IsRequired = false)]
-        public string DefaultViewExtension
-        {
-            get
-            {
-                return (string)this["defaultViewExtension"];
-            }
-
-            set
-            {
-                this["defaultViewExtension"] = value;
-            }
-        }
-
-        /// <summary>
         /// Gets the routes.
         /// </summary>
         /// <value>

@@ -1,7 +1,6 @@
 ﻿namespace Anterec.ControllerLess.Mvc
 {
     using System.Web.Mvc;
-    using Anterec.ControllerLess.Configuration;
 
     /// <summary>
     /// The ControllerLessController class.
@@ -14,25 +13,14 @@
         /// <returns>The requested view.</returns>
         public ActionResult Index()
         {
-            var settings = RouteConfiguration.GetConfigurationSettings();
-            var controller = RouteData.Values["x-ctrl"].ToString();
             var action = RouteData.Values["x-action"].ToString();
-            var area = RouteData.Values["x-area"].ToString();
-            var view = string.Format("/{0}/{1}", controller, action);
-            var extension = settings.DefaultViewExtension;
-
-            var route = settings.Get(view);
-            if (route != null)
+            RouteData.Values["action"] = action;
+            if (RouteData.Values["area"] != null)
             {
-                extension = route.ViewExtension;
+                RouteData.DataTokens["area"] = RouteData.Values["area"].ToString();
             }
 
-            if (!string.IsNullOrWhiteSpace(area))
-            {
-                return View(string.Format("~/Areas/{0}/Views{1}{2}", area, view, extension));
-            }
-
-            return View(string.Format("~/Views{0}{1}", view, extension));
+            return View(action);
         }
     }
 }

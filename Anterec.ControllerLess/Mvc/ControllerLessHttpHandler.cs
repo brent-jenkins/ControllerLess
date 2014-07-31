@@ -49,7 +49,6 @@
         /// <param name="httpContext">The HttpContext containing the request.</param>
         public void ProcessRequest(HttpContext httpContext)
         {
-            var area = _requestContext.RouteData.Values["area"] ?? string.Empty;
             var controller = _requestContext.RouteData.GetRequiredString("controller");
             var action = string.Empty;
 
@@ -74,16 +73,14 @@
                     }
                     catch
                     {
-                        _requestContext.RouteData.Values["ctrl"] = controller;
-                        _requestContext.RouteData.Values["x-ctrl"] = controller;
                         _requestContext.RouteData.Values["x-action"] = action;
-                        _requestContext.RouteData.Values["x-area"] = area;
 
                         var settings = RouteConfiguration.GetConfigurationSettings();
                         var route = settings.Get(string.Format("/{0}/{1}", controller, action));
 
                         if (route != null)
                         {
+                            _requestContext.RouteData.Values["controller"] = route.Controller;
                             _requestContext.RouteData.Values["action"] = route.Action;
                             controller = route.Controller;
                         }

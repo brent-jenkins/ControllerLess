@@ -82,6 +82,9 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Custom\Controllers\Page5Controller.cs" />
+    <Compile Include="Areas\Custom\CustomAreaRegistration.cs" />
+    <Compile Include="Controllers\AlternativeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Page2Controller.cs" />
     <Compile Include="Global.asax.cs">
@@ -104,6 +107,11 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Custom\Views\Page4\WithoutController.cshtml" />
+    <Content Include="Areas\Custom\Views\Web.config" />
+    <Content Include="Areas\Custom\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Custom\Views\Page5\WithController.cshtml" />
+    <Content Include="Areas\Custom\Views\Page5\WithoutController.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -125,8 +133,11 @@
     <Content Include="Views\Page2\WithController.cshtml" />
     <Content Include="Views\Page2\WithoutController.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\Alternative\AlternativeRouting.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Custom\Views\Shared\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

@@ -35,7 +35,7 @@ public class RouteConfig
 }
 ```
 
-From version 1.0.2, ControllerLess can also be configured to work with ASP.NET MVC areas.
+The ControllerLess plug-in can be configured to work with ASP.NET MVC areas.
 
 ```C#
 using System.Web.Routing;
@@ -63,7 +63,7 @@ public class CustomAreaRegistration : AreaRegistration
 }
 ```
 
-From version 1.0.3, it is possible to create controllers with or without actions for specific views.
+It is also possible to create controllers with or without actions for specific views.
 
 Advanced Configuration (optional)
 =================================
@@ -71,42 +71,36 @@ Advanced Configuration (optional)
 You can configure ControllerLess to redirect requests to your own controllers and actions on a URL by URL basis in the Web.config file.
 
 ```XML
-<controllerLessSettings>
-  <routes>
-    <clear />
-    <add url="/Hello/Index" controller="Door" action="Enter"/>
-    <add url="/Hello/Cutiepie" controller="Panic" action="Run"/>
-    ...
-  </routes>
-</controllerLessSettings>
+<configuration>
+  <configSections>
+	<section name="controllerLessSettings" type="Anterec.ControllerLess.Configuration.RouteConfiguration, Anterec.ControllerLess"/>
+  </configSections>
+  ...
+  <controllerLessSettings>
+    <routes>
+      <clear />
+      <add url="/Hello/Index" controller="Door" action="Enter"/>
+      <add url="/Hello/Cutiepie" controller="Panic" action="Run"/>
+      ...
+    </routes>
+  </controllerLessSettings>
+</configuration>
 ```
 
 You can also configure your own controller and action to receive all requests, replacing the ControllerLess default behaviour.
 
 ```XML
-<controllerLessSettings defaultController="Default" defaultAction="Show">
-  <routes>
-    ...
-  </routes>
-</controllerLessSettings>
+<configuration>
+  <configSections>
+	<section name="controllerLessSettings" type="Anterec.ControllerLess.Configuration.RouteConfiguration, Anterec.ControllerLess"/>
+  </configSections>
+  ...
+  <controllerLessSettings defaultController="Default" defaultAction="Show">
+    <routes>
+      ...
+    </routes>
+  </controllerLessSettings>
+</configuration>
 ```
 
 In this example any view that doesn't have a controller will be routed to the "Show" action on the "Default" controller.
-
-Enabling VB.NET support
-=======================
-
-As of version 0.2.1 you can configure the extension for views (either .cshtml or vbhtml) either globally or for individual routes.
-
-```XML
-<controllerLessSettings defaultViewExtension=".vbhtml">
-  <routes>
-    <clear />
-    <add url="/Hello/Index" controller="Door" action="Enter"/>
-    <add url="/Hello/Cutiepie" controller="Panic" action="Run"/>
-    <add url="/Goodbye/Leave" viewExtension=".cshtml"/>
-    ...
-  </routes>
-</controllerLessSettings>
-```
-

@@ -66,25 +66,5 @@
                 this["action"] = value;
             }
         }
-
-        /// <summary>
-        /// Gets or sets the view file extension.
-        /// </summary>
-        /// <value>
-        /// The view file extension.
-        /// </value>
-        [ConfigurationProperty("viewExtension", DefaultValue = ".cshtml", IsRequired = false)]
-        public string ViewExtension
-        {
-            get
-            {
-                return (string)this["viewExtension"];
-            }
-
-            set
-            {
-                this["viewExtension"] = value;
-            }
-        }
     }
 }
