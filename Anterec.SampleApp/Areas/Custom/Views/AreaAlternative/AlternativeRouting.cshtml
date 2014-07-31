@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Anterec.SampleApp.Models.User
+@{
     ViewBag.Title = "Alternative routing";
 }
 
@@ -6,3 +7,16 @@
 <p>
     This action has been re-routed through to the AlternativeRouting action on the AlternativeController view controller.
 </p>
+
+@if (!IsPost)
+{
+    using (Html.BeginForm("Index", "Page6", FormMethod.Post))
+    {
+        <label>Enter your name:</label> @Html.TextBoxFor(x => x.Name)
+        <button type="submit">Submit</button>
+    }
+}
+else
+{
+    <span>You entered: @Model.Name</span>
+}
