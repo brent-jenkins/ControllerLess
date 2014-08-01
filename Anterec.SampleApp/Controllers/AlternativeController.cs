@@ -1,6 +1,7 @@
 ﻿namespace Anterec.SampleApp.Controllers
 {
     using System.Web.Mvc;
+    using Anterec.SampleApp.Models;
 
     /// <summary>
     /// The alternative controller.
@@ -13,9 +14,23 @@
         /// <returns>
         /// The AlternativeRouting View.
         /// </returns>
+        [HttpGet]
         public ActionResult AlternativeRouting()
         {
-            return View();
+            return View(new User());
+        }
+
+        /// <summary>
+        /// Handle the AlternativeRouting action.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns>
+        /// The AlternativeRouting View.
+        /// </returns>
+        [HttpPost]
+        public ActionResult AlternativeRouting(User user)
+        {
+            return View(user);
         }
     }
 }

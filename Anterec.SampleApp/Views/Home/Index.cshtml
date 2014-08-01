@@ -1,16 +1,23 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "ControllerLess views";
 }
-
-<p class="lead">
-    Demonstrating the funcionality included in the ControllerLess plug-in for ASP.NET MVC.
-</p>
+<h2>ControllerLess views</h2>
 <p>
-    Click on the links in the menu on the left-hand side to test the ControllerLess functionality.
-    <ul>
-        <li>Home - A standard MVC page with a controller and Index action.</li>
-        <li>Page without a controller - No controller exists for this view or any of its actions.</li>
-        <li>Action with a controller - A controller exists for this view and this action.</li>
-        <li>Action without a controller - A controller exists for this view but not for this action.</li>
-    </ul>
-</p>
+    This is the core functionality of the ControllerLess plug-in</p>
+<p>
+    Create as many views as you want and continue using the Razor syntax, all without adding a 
+    single view controller.</p>
+<p>All that's needed it to update your route configuration to use the ControllerLessRouteHandler.</p>
+<pre>
+public static void RegisterRoutes(RouteCollection routes)
+{
+    routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+    var route = new Route(
+                "{controller}/{action}/{id}",
+                new RouteValueDictionary(new { controller = "Home", action = "Index", id = UrlParameter.Optional }),
+                <mark>new ControllerLessRouteHandler());</mark>
+
+    routes.Add(route);
+}
+</pre>

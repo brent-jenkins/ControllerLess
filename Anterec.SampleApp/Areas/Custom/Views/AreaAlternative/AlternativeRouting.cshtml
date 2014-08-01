@@ -1,22 +1,35 @@
 ﻿@model Anterec.SampleApp.Models.User
 @{
-    ViewBag.Title = "Alternative routing";
+    ViewBag.Title = "Configure custom routes for areas";
 }
-
-<p class="lead">Area action with alternative routing</p>
-<p>
-    This action has been re-routed through to the AlternativeRouting action on the AlternativeController view controller.
-</p>
-
+<h2>Configure custom routes for areas</h2>
+<p>You can configure ControllerLess to route a request from a specific URL through to a specific controller and action in Web.config.</p>
+<pre>
+&lt;controllerLessSettings&gt;
+    &lt;routes&gt;
+	    &lt;clear /&gt;
+	    &lt;add url="/Custom/Example5/Example5a" area="Custom" controller="AreaAlternative" action="AlternativeRouting"/&gt;
+    &lt;/routes&gt;
+&lt;/controllerLessSettings&gt;
+</pre>
+<hr/>
+<h3>Example form:</h3>
+<p>Remember to post data to the correct URL (controller and action), e.g. /Custom/Example5/Example5a (the post 
+    action will be re-routed through to /Custom/AreaAlternative/AlternativeRouting).</p>
 @if (!IsPost)
 {
-    using (Html.BeginForm("Index", "Page6", FormMethod.Post))
+    using (Html.BeginForm("Example5a", "Example5", FormMethod.Post, new { role = "form" }))
     {
-        <label>Enter your name:</label> @Html.TextBoxFor(x => x.Name)
-        <button type="submit">Submit</button>
+        <div class="form-group">
+            <label class="control-label">Enter your name:</label>
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
     }
 }
 else
 {
-    <span>You entered: @Model.Name</span>
+    <blockquote>
+        Computer says: "¡Hola, @Model.Name!"
+    </blockquote>
 }

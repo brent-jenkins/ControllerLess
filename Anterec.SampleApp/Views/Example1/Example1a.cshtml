@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "ControllerLess actions";
+}
+<h2>ControllerLess actions</h2>
+<p>
+    Even if you have a controller for a view, with the ControllerLess plug-in you don't need to 
+    add an action for it.</p>
+<p>Only add code to handle actions where it's needed, not just to return a simple view.</p>
+<pre>
+public class Example1Controller : Controller
+{
+    <mark>// ActionResult Example1a() is not required.</mark>
+
+    public ActionResult Example1b()
+    {
+        return View();
+    }
+}
+</pre>

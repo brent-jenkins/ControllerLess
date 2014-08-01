@@ -3,17 +3,17 @@
     using System.Web.Mvc;
 
     /// <summary>
-    /// The home controller.
+    /// The example 1 controller.
     /// </summary>
-    public class HomeController : Controller
+    public class Example1Controller : Controller
     {
         /// <summary>
-        /// Handle the Index action.
+        /// Handle the Example1b action.
         /// </summary>
         /// <returns>
-        /// The Index View.
+        /// The Example1b View.
         /// </returns>
-        public ActionResult Index()
+        public ActionResult Example1b()
         {
             return View();
         }

@@ -83,11 +83,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Custom\Controllers\AreaAlternativeController.cs" />
-    <Compile Include="Areas\Custom\Controllers\Page5Controller.cs" />
     <Compile Include="Areas\Custom\CustomAreaRegistration.cs" />
     <Compile Include="Controllers\AlternativeController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Page2Controller.cs" />
+    <Compile Include="Controllers\Example1Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -109,11 +107,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\Custom\Views\Page4\WithoutController.cshtml" />
+    <Content Include="Areas\Custom\Views\Example4\Example4a.cshtml" />
     <Content Include="Areas\Custom\Views\Web.config" />
     <Content Include="Areas\Custom\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Custom\Views\Page5\WithController.cshtml" />
-    <Content Include="Areas\Custom\Views\Page5\WithoutController.cshtml" />
     <Content Include="Areas\Custom\Views\AreaAlternative\AlternativeRouting.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -132,10 +128,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
-    <Content Include="Views\Page1\WithoutController.cshtml" />
-    <Content Include="Views\Page2\WithController.cshtml" />
-    <Content Include="Views\Page2\WithoutController.cshtml" />
+    <Content Include="Views\Example1\Example1a.cshtml" />
+    <Content Include="Views\Example1\Example1b.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\Example2\Example2a.cshtml" />
     <Content Include="Views\Alternative\AlternativeRouting.cshtml" />
   </ItemGroup>
   <ItemGroup>

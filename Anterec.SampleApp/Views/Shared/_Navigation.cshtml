@@ -1,33 +1,23 @@
-﻿<div class="panel panel-primary">
-    <div class="panel-body">
-        <ul class="nav nav-stacked">
-            <li>
-                <a href="/">Home</a>
-            </li>
-            <li>
-                <a href="/Page1/WithoutController">View without a controller</a>
-            </li>
-            <li>
-                <a href="/Page2/WithController">Action with a controller</a>
-            </li>
-            <li>
-                <a href="/Page2/WithoutController">Action without a controller</a>
-            </li>
-            <li>
-                <a href="/Page3">Action with alternative routing</a>
-            </li>
-            <li>
-                <a href="/Custom/Page4/WithoutController">Area view without a controller</a>
-            </li>
-            <li>
-                <a href="/Custom/Page5/WithController">Area action with a controller</a>
-            </li>
-            <li>
-                <a href="/Custom/Page5/WithoutController">Area action without a controller</a>
-            </li>
-            <li>
-                <a href="/Custom/Page6">Area action with alternative routing</a>
-            </li>
-        </ul>
-    </div>
+﻿<div class="list-group">
+    @CreateLink("ControllerLess views", "/")
+    @CreateLink("ControllerLess views in areas", "/Custom/Example4/Example4a")
+    @CreateLink("ControllerLess actions", "/Example1/Example1a")
+    @CreateLink("Standard ASP.NET MVC actions", "/Example1/Example1b")
+    @CreateLink("Configure custom routes", "/Example3/Example3a")
+    @CreateLink("Configure custom routes for areas", "/Custom/Example5/Example5a")
 </div>
+
+@functions {
+    public MvcHtmlString CreateLink(string caption, string url)
+    {
+        var template = "<a href=\"{0}\" class=\"{1}\">{2}</a>";
+        var css = "list-group-item";
+
+        if (Request.Url.PathAndQuery == url)
+        {
+            css += " active";
+        }
+
+        return new MvcHtmlString(string.Format(template, url, css, caption));
+    }
+}

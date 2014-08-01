@@ -1,8 +1,36 @@
-﻿@{
-    ViewBag.Title = "Action with alternative routing";
+﻿@model Anterec.SampleApp.Models.User
+@{
+    ViewBag.Title = "Configure custom routes";
 }
 
-<p class="lead">Action with alternative routing</p>
-<p>
-    This action has been re-routed through to the AlternativeRouting action on the AlternativeController view controller.
-</p>
+<h2>Configure custom routes</h2>
+<p>You can configure ControllerLess to route a request from a specific URL through to a specific controller and action in Web.config.</p>
+<pre>
+&lt;controllerLessSettings&gt;
+    &lt;routes&gt;
+	    &lt;clear /&gt;
+	    &lt;add url="/Example3/Example3a" controller="Alternative" action="AlternativeRouting"/&gt;
+    &lt;/routes&gt;
+&lt;/controllerLessSettings&gt;
+</pre>
+<hr/>
+<h3>Example form:</h3>
+<p>Remember to post data to the correct URL (controller and action), e.g. /Example3/Example3a (the post 
+    action will be re-routed through to /Alternative/AlternativeRouting).</p>
+@if (!IsPost)
+{
+    using (Html.BeginForm("Example3a", "Example3", new { area = "" }, FormMethod.Post, new { role = "form" }))
+    {
+        <div class="form-group">
+            <label class="control-label">Enter your name:</label>
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    }
+}
+else
+{
+    <blockquote>
+        Computer says: "Bonjour, @Model.Name!"
+    </blockquote>
+}

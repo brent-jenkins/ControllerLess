@@ -1,6 +1,5 @@
 ﻿namespace Anterec.ControllerLess.Mvc
 {
-    using System;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
@@ -11,11 +10,6 @@
     /// </summary>
     public class ControllerLessHttpHandler : IHttpHandler
     {
-        /// <summary>
-        /// The assembly name.
-        /// </summary>
-        private const string AssemblyName = "Anterec.ControllerLess.Mvc";
-
         /// <summary>
         /// The request context.
         /// </summary>
@@ -35,9 +29,10 @@
             _requestContext = requestContext;
             _configuration = RouteConfiguration.GetConfigurationSettings();
 
-            if (!ControllerBuilder.Current.DefaultNamespaces.Contains(AssemblyName))
+            var target = typeof(ControllerLessHttpHandler).Namespace;
+            if (!ControllerBuilder.Current.DefaultNamespaces.Contains(target))
             {
-                ControllerBuilder.Current.DefaultNamespaces.Add(AssemblyName);
+                ControllerBuilder.Current.DefaultNamespaces.Add(target);
             }
         }
 
@@ -54,16 +49,6 @@
         /// </summary>
         /// <param name="httpContext">The HttpContext containing the request.</param>
         public void ProcessRequest(HttpContext httpContext)
-        {
-            HttpContextBase wrapper = new HttpContextWrapper(httpContext);
-            ProcessRequest(wrapper);
-        }
-
-        /// <summary>
-        /// Process the current HTTP request.
-        /// </summary>
-        /// <param name="httpContext">The HttpContext containing the request.</param>
-        public void ProcessRequest(HttpContextBase httpContext)
         {
             var controller = _requestContext.RouteData.GetRequiredString("controller");
             var action = string.Empty;
@@ -100,16 +85,6 @@
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Gets the HttpHandler for the current request.
-        /// </summary>
-        /// <param name="requestContext">The requestContext for the current request.</param>
-        /// <returns>The HttpHandler for the current request.</returns>
-        public IHttpHandler GetHttpHandler(RequestContext requestContext)
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>
