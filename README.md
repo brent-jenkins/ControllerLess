@@ -44,4 +44,4 @@ public class RouteConfig
 Further Reading
 ===============
 
-See the [ControllerLess Wiki](wiki) pages for more detailed information on configuring and extending the ControllerLess plug-in.
+See the [ControllerLess Wiki pages](https://github.com/brentj73/ControllerLess/wiki) for more detailed information on configuring and extending the ControllerLess plug-in.
