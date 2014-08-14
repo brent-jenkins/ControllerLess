@@ -97,6 +97,7 @@
         {
             var route = GetRoute(controller, action);
             _requestContext.RouteData.Values["x-action"] = action;
+            _requestContext.RouteData.Values["x-controller"] = controller;
 
             if (route != null)
             {
