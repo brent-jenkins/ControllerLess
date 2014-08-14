@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ControllerLess</id>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <title>ControllerLess ASP.NET MVC</title>
     <authors>Brent Jenkins</authors>
     <owners>Brent Jenkins</owners>
