@@ -1,16 +1,15 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Anterec.SampleApp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Sample ASP.NET MVC ControllerLess application")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Anterec Ltd")]
 [assembly: AssemblyProduct("Anterec.SampleApp")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright ©2014 Brent Jenkins")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

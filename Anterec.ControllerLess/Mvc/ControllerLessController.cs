@@ -11,7 +11,7 @@
         /// Provides the default view controller.
         /// </summary>
         /// <returns>The requested view.</returns>
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             var action = RouteData.Values["x-action"].ToString();
             var controller = RouteData.Values["x-controller"].ToString();

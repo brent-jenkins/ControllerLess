@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ControllerLess</id>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <title>ControllerLess ASP.NET MVC</title>
     <authors>Brent Jenkins</authors>
     <owners>Brent Jenkins</owners>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <description>Make ASP.NET MVC controllers and actions optional.</description>
-    <releaseNotes>Included x-controller value in MVC RouteData.</releaseNotes>
+    <releaseNotes>Made default controller action virtual.</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>MVC MVC4 MVC5 ASP.NET View Controller ControllerLess</tags>
 	<dependencies>
