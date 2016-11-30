@@ -1,9 +1,11 @@
-﻿namespace Anterec.ControllerLess.Mvc
+﻿using System;
+
+namespace Anterec.ControllerLess.Mvc
 {
+    using Anterec.ControllerLess.Configuration;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using Anterec.ControllerLess.Configuration;
 
     /// <summary>
     /// The ControllerLessHttpHandler class.
@@ -74,7 +76,14 @@
                     }
                     catch
                     {
-                        DispatchRequest(controllerFactory, controller, action);
+                        try
+                        {
+                            DispatchRequest(controllerFactory, controller, action);
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            httpContext.Response.StatusCode = 404;
+                        }
                     }
                 }
                 finally
