@@ -1,4 +1,4 @@
-#ControllerLess ASP.NET MVC [![Build Status](https://api.travis-ci.org/brentj73/ControllerLess.svg)](https://travis-ci.org/brentj73/ControllerLess)
+#ControllerLess ASP.NET MVC
 
 Microsoft ASP.NET MVC is arguably one of the most flexible frameworks for building modern web applications.
 
